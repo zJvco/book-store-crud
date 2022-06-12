@@ -1,5 +1,7 @@
 from flask import Blueprint
 
+from ..models.book import Book
+
 book_bp = Blueprint("book", __name__)
 
 
