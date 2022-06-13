@@ -8,82 +8,44 @@ from ..models.book import BookInput, BookOutput
 book_bp = Blueprint("book", __name__)
 
 
-@book_bp.route("/")
+@book_bp.route("/", methods=["GET", "POST"])
 def book_list():
-    try:
-        cursor = mysql.connection.cursor()
-        cursor.execute(
-            """
-            SELECT * FROM books;
-            """
-        )
-        
-        books = cursor.fetchall()
-
-        if not books:
-            return jsonify({
-                "message": "Books was not found"
-            }), 404
-
-        res = []
-
-        for book in books:
-            res.append(
-                BookOutput(
-                    id=book[0],
-                    author=book[1],
-                    title=book[2],
-                    sinopse=book[3],
-                    published_date=book[4],
-                    genre=book[5],
-                    price=book[6],
-                    created_date=book[7],
-                    updated_date=book[8]
-                ).dict()
-            )
-    except:
-        return jsonify({
-            "message": "Was not possible to list the books"
-        }), 500
-    else:
-        return jsonify(res)
-    finally:
-        cursor.close()
-
-
-@book_bp.route("/<int:book_id>", methods=["GET", "POST", "PUT", "DELETE"])
-def book(book_id: int):
     # GET
     if request.method == "GET":
         try:
             cursor = mysql.connection.cursor()
             cursor.execute(
                 """
-                SELECT * FROM books WHERE id = %s
-                """, (str(book_id))
+                SELECT * FROM books;
+                """
             )
+            
+            books = cursor.fetchall()
 
-            book = cursor.fetchone()
-
-            if not book:
+            if not books:
                 return jsonify({
-                    "message": "Book was not found"
+                    "message": "Books was not found"
                 }), 404
 
-            res = BookOutput(
-                id=book[0],
-                author=book[1],
-                title=book[2],
-                sinopse=book[3],
-                published_date=book[4],
-                genre=book[5],
-                price=book[6],
-                created_date=book[7],
-                updated_date=book[8]
-            ).dict()
+            res = []
+
+            for book in books:
+                res.append(
+                    BookOutput(
+                        id=book[0],
+                        author=book[1],
+                        title=book[2],
+                        sinopse=book[3],
+                        published_date=book[4],
+                        genre=book[5],
+                        price=book[6],
+                        created_date=book[7],
+                        updated_date=book[8]
+                    ).dict()
+                )
         except:
             return jsonify({
-                "message": f"Was not possible to get book with id {book_id}"
+                "message": "Was not possible to list the books"
             }), 500
         else:
             return jsonify(res)
@@ -119,7 +81,7 @@ def book(book_id: int):
                 """
                 INSERT INTO books (author, title, sinopse, published_date, genre, price)
                 VALUES (%s, %s, %s, %s, %s, %s)
-                """, (book.author, book.title, book.sinopse, book.published_date, book.genre, book.price)
+                """, [book.author, book.title, book.sinopse, book.published_date, book.genre, book.price]
             )
         except:
             mysql.connection.rollback()
@@ -133,6 +95,47 @@ def book(book_id: int):
             return jsonify({
                 "message": f"Book created successfully"
             }), 201
+        finally:
+            cursor.close()
+
+
+@book_bp.route("/<int:book_id>", methods=["GET", "PUT", "DELETE"])
+def book(book_id: int):
+    # GET
+    if request.method == "GET":
+        try:
+            cursor = mysql.connection.cursor()
+            cursor.execute(
+                """
+                SELECT * FROM books WHERE id = %s
+                """, [book_id]
+            )
+
+            book = cursor.fetchone()
+
+            if not book:
+                return jsonify({
+                    "message": "Book was not found"
+                }), 404
+
+            res = BookOutput(
+                id=book[0],
+                author=book[1],
+                title=book[2],
+                sinopse=book[3],
+                published_date=book[4],
+                genre=book[5],
+                price=book[6],
+                created_date=book[7],
+                updated_date=book[8]
+            ).dict()
+        except Exception as e:
+            print(e)
+            return jsonify({
+                "message": f"Was not possible to get book with id {book_id}"
+            }), 500
+        else:
+            return jsonify(res)
         finally:
             cursor.close()
     # PUT
@@ -165,7 +168,7 @@ def book(book_id: int):
             cursor.execute(
                 """
                 SELECT * FROM books WHERE id = %s
-                """, (str(book_id))
+                """, [book_id]
             )
 
             if not cursor.fetchone():
@@ -178,7 +181,7 @@ def book(book_id: int):
                 UPDATE books
                 SET author = %s, title = %s, sinopse = %s, published_date = %s, genre = %s, price = %s
                 WHERE id = %s
-                """, (book.author, book.title, book.sinopse, book.published_date, book.genre, book.price, book_id)
+                """, [book.author, book.title, book.sinopse, book.published_date, book.genre, book.price, book_id]
             )
         except:
             mysql.connection.rollback()
@@ -202,7 +205,7 @@ def book(book_id: int):
             cursor.execute(
                 """
                 SELECT * FROM books WHERE id = %s
-                """, (str(book_id))
+                """, [book_id]
             )
 
             if not cursor.fetchone():
@@ -214,7 +217,7 @@ def book(book_id: int):
                 """
                 DELETE FROM books
                 WHERE id = %s
-                """, (str(book_id))
+                """, [book_id]
             )
         except:
             mysql.connection.rollback()

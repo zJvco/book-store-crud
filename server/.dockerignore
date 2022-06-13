@@ -1,0 +1,4 @@
+venv/
+schema.sql/
+insert_data.sql/
+.env.sample/
