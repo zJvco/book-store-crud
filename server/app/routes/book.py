@@ -20,6 +20,11 @@ def book_list():
         
         books = cursor.fetchall()
 
+        if not books:
+            return jsonify({
+                "message": "Books was not found"
+            }), 404
+
         res = []
 
         for book in books:
@@ -41,9 +46,9 @@ def book_list():
             "message": "Was not possible to list the books"
         }), 500
     else:
-        cursor.close()
-
         return jsonify(res)
+    finally:
+        cursor.close()
 
 
 @book_bp.route("/<int:book_id>", methods=["GET", "POST", "PUT", "DELETE"])
@@ -59,6 +64,11 @@ def book(book_id: int):
             )
 
             book = cursor.fetchone()
+
+            if not book:
+                return jsonify({
+                    "message": "Book was not found"
+                }), 404
 
             res = BookOutput(
                 id=book[0],
@@ -161,7 +171,7 @@ def book(book_id: int):
             if not cursor.fetchone():
                 return jsonify({
                     "message": "Book was not found"
-                }), 400
+                }), 404
 
             cursor.execute(
                 """
@@ -198,7 +208,7 @@ def book(book_id: int):
             if not cursor.fetchone():
                 return jsonify({
                     "message": "Book was not found"
-                }), 400
+                }), 404
 
             cursor.execute(
                 """
