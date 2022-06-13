@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS books (
     author VARCHAR(45) NOT NULL,
     title VARCHAR(150) NOT NULL,
     sinopse VARCHAR(500) NOT NULL,
-    published_date DATETIME NOT NULL,
+    published_date DATE NOT NULL,
     genre VARCHAR(45) NOT NULL,
     price FLOAT NOT NULL,
     created_date DATETIME DEFAULT NOW() NOT NULL,

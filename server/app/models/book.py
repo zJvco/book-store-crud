@@ -1,18 +1,37 @@
-from ..extensions import mysql
+from pydantic import BaseModel, validator
+from datetime import date, datetime
 
 
-class Book:
-    def get_book_list(query: str):
-        pass
-    
-    def get_book(query: str):
-        pass
+class BookInput(BaseModel):
+    author: str
+    title: str
+    sinopse: str
+    published_date: date
+    genre: str
+    price: float
 
-    def insert_book(query: str):
-        pass
+    @validator("author", "title", "sinopse", "published_date", "genre", "price")
+    def validate_if_is_empty(cls, value):
+        if not value:
+            raise ValueError("Fill all fields")
+        
+        return value
 
-    def update_book(query: str):
-        pass
+    @validator("price")
+    def validate_price(cls, value):
+        if value < 0:
+            raise ValueError("Price value is not valid")
+        
+        return value
 
-    def delete_book(query: str):
-        pass
+
+class BookOutput(BaseModel):
+    id: int
+    author: str
+    title: str
+    sinopse: str
+    published_date: date
+    genre: str
+    price: float
+    created_date: datetime
+    updated_date: datetime
