@@ -1,5 +1,5 @@
-.remove-book-btn {
-    font-size: 1rem;
+.edit-book-btn, .remove-book-btn {
+    font-size: 0.8rem;
     border: none;
     outline: none;
     background-color: transparent;

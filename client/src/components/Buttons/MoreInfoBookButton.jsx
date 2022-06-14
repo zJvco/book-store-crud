@@ -1,11 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import "../../styles/MoreInfoBookButton.css";
 
-function MoreInfoBookButton() {
+function MoreInfoBookButton({ children, onClick }) {
     return (
-        <button className="more-info-book-button" id="more-info-book-button">
-            <FontAwesomeIcon icon="fa-solid fa-circle-info" />
+        <button
+            className="more-info-book-button"
+            onClick={onClick}
+        >
+            { children }
         </button>
     );
 }

@@ -1,9 +1,12 @@
 import "../../styles/CreateBookButton.css";
 
-function CreateBookButton() {
+function CreateBookButton({ children, onClick }) {
     return (
-        <button className="create-book-btn" id="create-book-btn">
-            CREATE
+        <button
+            className="create-book-btn"
+            onClick={onClick}
+        >
+            { children }
         </button>
     );
 }
