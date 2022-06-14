@@ -1,0 +1,9 @@
+header {
+    padding: 14px;
+    background-color: var(--site-color-one);
+}
+
+header h1 {
+    font-size: 1.2rem;
+    color: #FFFFFF;
+}

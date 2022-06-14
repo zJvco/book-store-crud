@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --site-color-one: #49378C;
+    --site-color-two: #F2561D;
+    --site-color-three: #F2EFBD;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+main {
+    padding: 25px;
+}
+
+main .book-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
