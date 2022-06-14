@@ -1,0 +1,13 @@
+table {
+    font-weight: normal;
+    border-spacing: 2rem;
+    width: 100%;
+}
+
+table tr {
+    margin: 10px 0;
+}
+
+table tr td {
+    text-align: center;
+}

@@ -7,9 +7,7 @@
 }
 
 :root {
-    --site-color-one: #49378C;
-    --site-color-two: #F2561D;
-    --site-color-three: #F2EFBD;
+    --site-primary-color: #49378C;
 }
 
 body {
@@ -24,4 +22,8 @@ main .book-list-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+main .book-list-header h3 {
+    color: var(--site-primary-color);
 }

@@ -1,0 +1,8 @@
+.more-info-book-button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--site-primary-color);
+}

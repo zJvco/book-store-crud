@@ -1,6 +1,6 @@
 header {
     padding: 14px;
-    background-color: var(--site-color-one);
+    background-color: var(--site-primary-color);
 }
 
 header h1 {
