@@ -33,7 +33,7 @@ function BookTable() {
         (async () => {
             try {
                 const res = await api.get("/book");
-    
+
                 setBookList(res.data);
             } catch (error) {
                 console.error(error)

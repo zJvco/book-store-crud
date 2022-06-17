@@ -1,0 +1,10 @@
+.edit-book-btn, .remove-book-btn {
+    font-size: 0.8rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0 15px;
+    color: var(--site-primary-color);
+    font-weight: bold;
+    cursor: pointer;
+}

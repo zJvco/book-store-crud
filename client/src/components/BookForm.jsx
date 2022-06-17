@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useContext, useEffect, useState } from "react";
 
 import { FormContext } from "../context/FormContext";
@@ -165,6 +166,12 @@ function BookForm() {
                 <input type="button" className="cancel-book-btn" value="CANCEL" onClick={handleCancelButton} />
                 <input type="submit" className="create-book-btn" value="CREATE" />
             </div>
+=======
+function BookForm() {
+    return (
+        <form>
+            Hello
+>>>>>>> 906d74bf79d769ce03acb5cebcaeee994913f045
         </form>
     );
 }
