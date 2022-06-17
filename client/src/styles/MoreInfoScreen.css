@@ -1,0 +1,56 @@
+.more-info-screen-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.more-info-screen-container {
+    position: relative;
+    width: 40%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.more-info-screen-container .display-field {
+    margin: 10px 0;
+}
+
+.more-info-screen-container .display-field h5 {
+    font-size: 1rem;
+    color: var(--site-primary-color);
+}
+
+.more-info-screen-container .display-field h5 {
+    margin: 5px 0;
+}
+
+.more-info-screen-container .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.more-info-screen-container .close-btn .first-slash {
+    width: 10px;
+    height: 2px;
+    background-color: #000;
+    transform: rotate(55deg);
+}
+
+.more-info-screen-container .close-btn .second-slash {
+    width: 10px;
+    height: 2px;
+    background-color: #000;
+    transform: translate(0, -2px) rotate(130deg);
+}

@@ -1,0 +1,23 @@
+.alert {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    padding: 25px;
+    width: calc(100% - 10px * 2);
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #FFFFFF;
+}
+
+.alert, #success {
+    background-color: #1ABC9C;
+}
+
+.alert, #error {
+    background-color: #E74C3C;
+}
+
+.alert, #warning {
+    background-color: #F4D03F;
+}
